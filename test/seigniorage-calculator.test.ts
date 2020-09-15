@@ -1,32 +1,24 @@
 import { calculateExpectedSeig, Calculator } from '../src'
 
 import { BN } from 'bn.js'
-const { createCurrency, createCurrencyRatio } = require('@makerdao/currency')
 const { toBN } = require('web3-utils')
 const chai = require('chai')
 chai.use(require('chai-bn')(BN)).should()
 
-const _TON = createCurrency('TON')
-const _WTON = createCurrency('WTON')
-
-const TON_UNIT = 'wei'
-const WTON_UNIT = 'ray'
-
-const RAY = _WTON('1').toFixed(WTON_UNIT)
-
+const RAY = toBN('1000000000000000000000000000') // 1e+27
 
 describe('calculateExpectedSeig function', function () {
   it('should get correct value', function () {
     const fromBlockNumber = new BN('1')
     const toBlockNumber = new BN('10000')
-    const userStakedAmount = toBN(_WTON('1000').toFixed(WTON_UNIT))
-    const totalStakedAmount = toBN(_WTON('2000000').toFixed(WTON_UNIT))
-    const totalSupplyOfTON = toBN(_WTON('50000000').toFixed(WTON_UNIT))
-    const pseigRate = toBN(_WTON('0.4').toFixed(WTON_UNIT))
+    const userStakedAmount = toBN('1000').mul(RAY)
+    const totalStakedAmount = toBN('2000000').mul(RAY)
+    const totalSupplyOfTON = toBN('50000000').mul(RAY)
+    const pseigRate = toBN('4').mul(RAY).div(toBN('10'))
 
     const result = calculateExpectedSeig(fromBlockNumber, toBlockNumber, userStakedAmount, totalStakedAmount, totalSupplyOfTON, pseigRate)
 
-    const expected = toBN(_WTON('8.30956896').toFixed(WTON_UNIT))
+    const expected = toBN('8309568960000000000000000000')
     result.should.be.bignumber.equal(expected)
   })
 })
@@ -34,16 +26,16 @@ describe('calculateExpectedSeig function', function () {
 describe('Calculator class', function () {
   let calculator = new Calculator()
   beforeEach(async function () {
-    calculator.setTotalStakedAmount(toBN(_WTON('2000000').toFixed(WTON_UNIT)));
+    calculator.setTotalStakedAmount(toBN('2000000').mul(RAY))
   });
   it('should get correct value', function () {
     const fromBlockNumber = new BN('1')
     const toBlockNumber = new BN('10000')
-    const userStakedAmount = toBN(_WTON('1000').toFixed(WTON_UNIT))
+    const userStakedAmount = toBN('1000').mul(RAY)
 
     const result = calculator.getExpectedSeig(fromBlockNumber, toBlockNumber, userStakedAmount)
 
-    const expected = toBN(_WTON('8.30956896').toFixed(WTON_UNIT))
+    const expected = toBN('8309568960000000000000000000')
     result.should.be.bignumber.equal(expected)
   })
 })

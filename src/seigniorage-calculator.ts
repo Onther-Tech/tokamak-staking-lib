@@ -1,16 +1,11 @@
 import { BN } from 'bn.js'
-const { createCurrency, createCurrencyRatio } = require('@makerdao/currency')
 const { toBN } = require('web3-utils')
 
-const _TON = createCurrency('TON')
-const _WTON = createCurrency('WTON')
-const _WTON_TON = createCurrencyRatio(_WTON, _TON);
+const RAY = toBN('1000000000000000000000000000') // 1e+27
 
-const TON_UNIT = 'wei'
-const WTON_UNIT = 'ray'
-const WTON_TON_RATIO = _WTON_TON('1');
-
-const RAY = toBN(_WTON('1').toFixed(WTON_UNIT))
+const SEIG_PER_BLOCK = toBN('3920000000000000000000000000') // 3.92 in ray
+const DEFAULT_PSEIG_RATE = toBN('400000000000000000000000000') // 0.4 in ray
+const DEFAULT_TOTALSUPPLY_OF_TON = toBN('50000000000000000000000000000000000') // 50,000,000 in ray
 
 export const calculateExpectedSeig = (
   fromBlockNumber: BN,
@@ -20,7 +15,7 @@ export const calculateExpectedSeig = (
   totalSupplyOfTON: BN,
   pseigRate: BN
 ): BN => {
-  const seigPerBlock = toBN(_WTON('3.92').toFixed(WTON_UNIT))
+  const seigPerBlock = SEIG_PER_BLOCK
   const blockNumbers = toBlockNumber.sub(fromBlockNumber)
 
   const totalSeig = seigPerBlock.mul(blockNumbers)
@@ -40,9 +35,9 @@ export class Calculator {
   totalSupplyOfTON: BN
   totalStakedAmount: BN
   constructor() {
-    this.seigPerBlock = toBN(_WTON('3.92').toFixed(WTON_UNIT))
-    this.pseigRate = toBN(_WTON('0.4').toFixed(WTON_UNIT))
-    this.totalSupplyOfTON = toBN(_TON('50000000').times(WTON_TON_RATIO).toFixed(WTON_UNIT))
+    this.seigPerBlock = SEIG_PER_BLOCK
+    this.pseigRate = DEFAULT_PSEIG_RATE
+    this.totalSupplyOfTON = DEFAULT_TOTALSUPPLY_OF_TON
   }
 
   public setSeigPerBlock(seig: BN) {

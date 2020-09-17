@@ -22,18 +22,36 @@ Install the package
 
 Include library in your code
 
-`const { calculateExpectedSeig } = require('tokamak-staking-lib');`
+`const { calculateExpectedSeig, calculateExpectedSeigWithCommission } = require('tokamak-staking-lib');`
 
 Calculate the expected seigniorage
 
 ```
-const result = calculateExpectedSeig(
-  fromBlockNumber, // the latest commited block number. You can get this using seigManager.lastCommitBlock(layer2)
-  toBlockNumber, // the target block number which you want to calculate seigniorage
-  userStakedAmount, // the staked WTON amount of user. You can get this using coinage.balanceOf(user)
-  totalStakedAmount, // the staked WTON amount in SeigManager. You can get this using tot.totalSupply()
-  totalSupplyOfTON, // the current totalSupply of TON in RAY unit. You can get this using ton.totalSupply() - ton.balanceOf(WTON) + tot.totalSupply()
-  pseigRate // pseig rate in RAY unit. the current value is 0.4. You can get this using seigManager.relativeSeigRate()
+function calculateExpectedSeig(
+  fromBlockNumber: BN, // the latest commited block number. You can get this using seigManager.lastCommitBlock(layer2)
+  toBlockNumber: BN, // the target block number which you want to calculate seigniorage
+  userStakedAmount: BN, // the staked WTON amount of user. You can get this using coinage.balanceOf(user)
+  totalStakedAmount: BN, // the staked WTON amount in SeigManager. You can get this using tot.totalSupply()
+  totalSupplyOfTON: BN, // the current totalSupply of TON in RAY unit. You can get this using ton.totalSupply() - ton.balanceOf(WTON) + tot.totalSupply()
+  pseigRate: BN // pseig rate in RAY unit. the current value is 0.4. You can get this using seigManager.relativeSeigRate()
+)
+```
+
+Calculate the expected seigniorage with commission rate
+
+```
+function calculateExpectedSeigWithCommission(
+  fromBlockNumber: BN, // the latest commited block number. You can get this using seigManager.lastCommitBlock(layer2)
+  toBlockNumber: BN, // the target block number which you want to calculate seigniorage
+  userStakedAmount: BN, // the staked WTON amount of user. You can get this using coinage.balanceOf(user)
+  totalStakedAmount: BN, // the staked WTON amount in SeigManager. You can get this using tot.totalSupply()
+  totalSupplyOfTON: BN, // the current totalSupply of TON in RAY unit. You can get this using ton.totalSupply() - ton.balanceOf(WTON) + tot.totalSupply()
+  pseigRate: BN, // pseig rate in RAY unit. the current value is 0.4. You can get this using seigManager.relativeSeigRate()
+  commissionRate: BN, // The commission rate of the current layer2. You can get this using seigManager.commissionRates(layer2)
+  isCommissionRateNegative: boolean, // Whether the commission rate of the current layer2 is negative. You can get this using seigManager.isCommissionRateNegative(layer2)
+  operatorStakedAmount: BN, // operator's staking amount. You can get this using coinage.balanceOf(operator)
+  totalStakedAmountOnLayer2: BN, // The total amount in the current layer2. You can get this using coinage.totalSupply()
+  isOperator: boolean // Whether the user you want to calculate the seig is operator.
 )
 ```
 

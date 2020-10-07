@@ -4,7 +4,7 @@ Tokamak network staking library
 # Notice
 
 The current seigniorage per block in SeigManager is 3.92.   
-All number unit in this library is RAY(1e27) to reduce number errors.
+All number units in this library are RAY(1e27) to prevent number errors.
 
 # Related contracts
 

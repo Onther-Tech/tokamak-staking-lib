@@ -1,15 +1,16 @@
 {
-    "compilerOptions": {
-      "module": "commonjs",
-      "target": "es2017",
-      "declaration": true,
-      "outDir": "./dist",
-      "removeComments": true,
-      "lib": [
-        "es7"
-      ]
-    },
-    "include": [
-      "src/**/*"
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2017",
+    "declaration": true,
+    "outDir": "./dist",
+    "removeComments": true,
+    "noImplicitAny": true,
+    "lib": [
+      "es7"
     ]
-  }
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

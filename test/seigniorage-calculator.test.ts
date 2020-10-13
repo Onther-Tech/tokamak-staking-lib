@@ -1,6 +1,6 @@
 import { calculateExpectedSeig, calculateExpectedSeigWithCommission, Calculator } from "../src";
 
-import { BN } from "bn.js";
+import { BN } from "../node_modules/bn.js"; // This relative path is used to specify 'bn.js', not '@types/bn.js'.
 const { toBN } = require("web3-utils");
 const chai = require("chai");
 chai.use(require("chai-bn")(BN)).should();

@@ -18,6 +18,10 @@ First, add `tokamak-staking-lib` as a dependency in `package.json` file.
 Then, install the package to your local directory.
 ```sh
 $ npm install 
+
+$ cd ./node_modules/tokamak-staking-lib
+
+$ npm install 
 ```
 
 # Usage

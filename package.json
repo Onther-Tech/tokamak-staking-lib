@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "./build.sh",
     "test": "mocha -r ts-node/register ./**/*.test.ts"
   },
   "types": "dist/index.d.ts",

@@ -17,11 +17,7 @@ First, add `tokamak-staking-lib` as a dependency in `package.json` file.
 
 Then, install the package to your local directory.
 ```sh
-$ npm install 
-
-$ cd ./node_modules/tokamak-staking-lib
-
-$ npm install 
+$ npm install
 ```
 
 # Usage
@@ -100,13 +96,19 @@ function isLayer2(layer2: string): Promise<boolean>
 ## Query Staking Info
 First, import the staking modules from `tokamak-staking-lib` in your source code.
 ```
-const { getStake } = require("tokamak-staking-lib");
+const { getStakedAmount } = require("tokamak-staking-lib");
 ```
 
-### getStake
-This functions to get the staked amount by accout.
+### getStakedAmount
+This function gets the staked amount by layer2 and account.
 ```
-getStake = (layer2: string, account: string): Promise<string>
+function getStakedAmount(layer2: string, account: string): Promise<string>
+```
+
+### getTotalStakedAmount
+This function gets the total staked amount by account.
+```
+async function getTotalStakedAmount(account: string): Promise<string>
 ```
 
 ## Example Code

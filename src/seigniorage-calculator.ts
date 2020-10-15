@@ -1,4 +1,4 @@
-import { BN } from "../node_modules/bn.js"; // This relative path is used to specify 'bn.js', not '@types/bn.js'.
+import BN from "bn.js";
 const { toBN } = require("web3-utils");
 
 const RAY = toBN("1000000000000000000000000000"); // 1e+27

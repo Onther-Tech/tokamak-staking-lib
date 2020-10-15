@@ -1,6 +1,5 @@
-import Web3 from "web3";
 import { provider } from "web3-core";
-import { BN } from "../node_modules/bn.js"; // This relative path is used to specify 'bn.js', not '@types/bn.js'.
+import BN from "bn.js";
 const { toBN } = require("web3-utils");
 import Web3Connector from "./common/web3-connector";
 import Layer2Registry from "./contracts/layer2-registry";

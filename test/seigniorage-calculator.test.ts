@@ -1,6 +1,6 @@
 import { calculateExpectedSeig, calculateExpectedSeigWithCommission, Calculator } from "../src";
-
-import { BN } from "../node_modules/bn.js"; // This relative path is used to specify 'bn.js', not '@types/bn.js'.
+// This relative path is used to specify 'bn.js', not '@types/bn.js', because '@types/bn.js' is not injected to 'chai'.
+import { BN } from "../node_modules/bn.js";
 const { toBN } = require("web3-utils");
 const chai = require("chai");
 chai.use(require("chai-bn")(BN)).should();
@@ -12,29 +12,29 @@ const checkNumber = (
   a: BN,
   b: BN
 ) => {
-  const v = a.sub(b).abs();
+  const v: BN = a.sub(b).abs();
   v.should.be.bignumber.lte(tolerance);
 };
 
 describe("calculateExpectedSeig function", function () {
   it("should get correct value", function () {
-    const fromBlockNumber = new BN("1");
-    const toBlockNumber = new BN("10000");
-    const userStakedAmount = toBN("1000").mul(RAY);
-    const totalStakedAmount = toBN("2000000").mul(RAY);
-    const totalSupplyOfTON = toBN("50000000").mul(RAY);
-    const pseigRate = toBN("4").mul(RAY).div(toBN("10"));
+    const fromBlockNumber: BN = new BN("1");
+    const toBlockNumber: BN = new BN("10000");
+    const userStakedAmount: BN = toBN("1000").mul(RAY);
+    const totalStakedAmount: BN = toBN("2000000").mul(RAY);
+    const totalSupplyOfTON: BN = toBN("50000000").mul(RAY);
+    const pseigRate: BN = toBN("4").mul(RAY).div(toBN("10"));
 
-    const result = calculateExpectedSeig(fromBlockNumber, toBlockNumber, userStakedAmount, totalStakedAmount, totalSupplyOfTON, pseigRate);
+    const result: BN = calculateExpectedSeig(fromBlockNumber, toBlockNumber, userStakedAmount, totalStakedAmount, totalSupplyOfTON, pseigRate);
 
-    const expected = toBN("8309568960000000000000000000");
+    const expected: BN = toBN("8309568960000000000000000000");
     result.should.be.bignumber.equal(expected);
   });
 });
 
 describe("calculateExpectedSeigWithCommission function", function () {
   it("should get correct value", function () {
-    const result = calculateExpectedSeigWithCommission(
+    const result: BN = calculateExpectedSeigWithCommission(
       toBN("1"),
       toBN("10000"),
       toBN("5000").mul(RAY),
@@ -48,7 +48,7 @@ describe("calculateExpectedSeigWithCommission function", function () {
       false
     );
 
-    const expected = toBN("70631336160001000000000000000");
+    const expected: BN = toBN("70631336160001000000000000000");
     checkNumber(result, expected);
   });
 });
@@ -59,13 +59,13 @@ describe("Calculator class", function () {
     calculator.setTotalStakedAmount(toBN("2000000").mul(RAY));
   });
   it("should get correct value", function () {
-    const fromBlockNumber = new BN("1");
-    const toBlockNumber = new BN("10000");
-    const userStakedAmount = toBN("1000").mul(RAY);
+    const fromBlockNumber: BN = new BN("1");
+    const toBlockNumber: BN = new BN("10000");
+    const userStakedAmount: BN = toBN("1000").mul(RAY);
 
-    const result = calculator.getExpectedSeig(fromBlockNumber, toBlockNumber, userStakedAmount);
+    const result: BN = calculator.getExpectedSeig(fromBlockNumber, toBlockNumber, userStakedAmount);
 
-    const expected = toBN("8309568960000000000000000000");
+    const expected: BN = toBN("8309568960000000000000000000");
     result.should.be.bignumber.equal(expected);
   });
 });

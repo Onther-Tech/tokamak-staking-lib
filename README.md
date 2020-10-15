@@ -62,11 +62,15 @@ function calculateExpectedSeigWithCommission(
 If you want to use the `Calculator` class instead of the functions above. Please refer to [seigniorage-calculator.test.ts > Calculator] test code.
 
 ## Set Network
-You need to set network before calling query functions below. Otherwise, the default network will be `mainnet`. Currently, `mainnet` and `rinkeby` are supported.
+You need to set network before calling query functions below. Otherwise, the default network will be `mainnet`. Currently, `mainnet` and `rinkeby` for the second argument are supported.
 ```
 const { setNetwork } = require("tokamak-staking-lib");
 
-setNetwork("mainnet"); // mainnet or rinkeby
+setNetwork("https://mainnet.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839", "mainnet");
+
+// or
+
+setNetwork(new Web3.providers.HttpProvider("https://mainnet.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839"), "mainnet");
 ```
 
 ## Query Layer2 Registry Info
@@ -96,7 +100,7 @@ function isLayer2(layer2: string): Promise<boolean>
 ## Query Staking Info
 First, import the staking modules from `tokamak-staking-lib` in your source code.
 ```
-const { getStakedAmount } = require("tokamak-staking-lib");
+const { getStakedAmount, getTotalStakedAmount } = require("tokamak-staking-lib");
 ```
 
 ### getStakedAmount

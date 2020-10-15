@@ -1,5 +1,4 @@
 import { Contract } from "web3-eth-contract";
-import { BN } from "../../node_modules/bn.js"; // This relative path used to specify 'bn.js', not '@types/bn.js'.
 import Web3Connector from "../common/web3-connector";
 const Layer2RegistryABI = require("./abi/Layer2Registry.json");
 

@@ -31,8 +31,8 @@ export default class Layer2Registry {
         }
     }
 
-    public numLayer2s(): Promise<string> {
-        return this._contract.methods.numLayer2s().call();
+    public async numLayer2s(): Promise<number> {
+        return Number(await this._contract.methods.numLayer2s().call());
     }
 
     public layer2ByIndex(index: number): Promise<string> {

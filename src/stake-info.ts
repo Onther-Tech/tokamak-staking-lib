@@ -11,7 +11,7 @@ export const setNetwork = (provider: provider, net: string = "mainnet") => {
     SeigManager.setNetwork(net);
 };
 
-export const getNumLayer2 = (): Promise<string> => {
+export const getNumLayer2 = (): Promise<number> => {
     return Layer2Registry.instance().numLayer2s();
 };
 
@@ -29,7 +29,7 @@ export const getStakedAmount = (layer2: string, account: string): Promise<string
 
 export const getTotalStakedAmount = async (account: string): Promise<string> => {
     let total: BN = new BN(0);
-    const num: number = Number(await getNumLayer2());
+    const num: number = await getNumLayer2();
     for (let i: number = 0; i < num; ++i) {
         const layer2: string = await getLayer2ByIndex(i);
         const amount: string = await getStakedAmount(layer2, account);

@@ -9,8 +9,8 @@ setNetwork("https://mainnet.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839", "mai
 
 describe("Layer2Registry class", () => {
     it("should get number of layer2", async () => {
-        const expected: string = "2";
-        const actual: string = await getNumLayer2();
+        const expected: number = 2;
+        const actual: number = await getNumLayer2();
         actual.should.equal(expected);
     });
 

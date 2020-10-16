@@ -82,7 +82,7 @@ const { getNumLayer2, getLayer2ByIndex, isLayer2 } = require("tokamak-staking-li
 ### getNumLayer2
 This function gets the number of layer2.
 ```
-function getNumLayer2(): Promise<string>
+function getNumLayer2(): Promise<number>
 ```
 
 ### getLayer2ByIndex

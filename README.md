@@ -11,7 +11,7 @@ To get the information about related contracts, refer to [Deployed Contracts on 
 First, add `tokamak-staking-lib` as a dependency in `package.json` file.
 ```
 "dependencies": {
-  "tokamak-staking-lib": "^0.0.7",
+  "tokamak-staking-lib": "^0.0.8",
 },
 ```
 

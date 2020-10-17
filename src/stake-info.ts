@@ -23,18 +23,18 @@ export const isLayer2 = (layer2: string): Promise<boolean> => {
     return Layer2Registry.instance().layer2s(layer2);
 };
 
-export const getStakedAmount = (layer2: string, account: string): Promise<string> => {
+export const getStakedAmount = (layer2: string, account: string): Promise<BN> => {
     return SeigManager.instance().stakeOf(layer2, account);
 };
 
-export const getTotalStakedAmount = async (account: string): Promise<string> => {
+export const getTotalStakedAmount = async (account: string): Promise<BN> => {
     let total: BN = new BN(0);
     const num: number = await getNumLayer2();
     for (let i: number = 0; i < num; ++i) {
         const layer2: string = await getLayer2ByIndex(i);
-        const amount: string = await getStakedAmount(layer2, account);
-        total = total.add(toBN(amount));
+        const amount: BN = await getStakedAmount(layer2, account);
+        total = total.add(amount);
     }
 
-    return total.toString();
+    return total;
 };

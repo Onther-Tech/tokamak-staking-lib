@@ -106,13 +106,13 @@ const { getStakedAmount, getTotalStakedAmount } = require("tokamak-staking-lib")
 ### getStakedAmount
 This function gets the staked amount by layer2 and account.
 ```
-function getStakedAmount(layer2: string, account: string): Promise<string>
+function getStakedAmount(layer2: string, account: string): Promise<BN>
 ```
 
 ### getTotalStakedAmount
 This function gets the total staked amount by account.
 ```
-async function getTotalStakedAmount(account: string): Promise<string>
+async function getTotalStakedAmount(account: string): Promise<BN>
 ```
 
 ## Example Code

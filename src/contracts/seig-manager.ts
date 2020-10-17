@@ -1,4 +1,6 @@
 import { Contract } from "web3-eth-contract";
+import BN from "bn.js";
+const { toBN } = require("web3-utils");
 import Web3Connector from "../common/web3-connector";
 const SeigManagerABI = require("./abi/SeigManager.json");
 
@@ -31,7 +33,7 @@ export default class SeigManager {
         }
     }
 
-    public stakeOf(layer2: string, account: string): Promise<string> {
-        return this._contract.methods.stakeOf(layer2, account).call();
+    public async stakeOf(layer2: string, account: string): Promise<BN> {
+        return toBN(await this._contract.methods.stakeOf(layer2, account).call());
     }
 }

@@ -32,14 +32,14 @@ describe("SeigManager class", () => {
         const layer2: string = "0x39A13a796A3Cd9f480C28259230D2EF0a7026033";
         const tokamak1: string = "0xEA8e2eC08dCf4971bdcdfFFe21439995378B44F3"; // tokamak1 operator
         const expected: BN = new BN(0);
-        const actual: string = await getStakedAmount(layer2, tokamak1);
-        toBN(actual).should.be.bignumber.gt(expected);
+        const actual: BN = await getStakedAmount(layer2, tokamak1);
+        actual.should.be.bignumber.gt(expected);
     });
 
     it("should get total staked amount", async () => {
         const tokamak1: string = "0xEA8e2eC08dCf4971bdcdfFFe21439995378B44F3"; // tokamak1 operator
         const expected: BN = new BN(0);
-        const actual: string = await getTotalStakedAmount(tokamak1);
-        toBN(actual).should.be.bignumber.gt(expected);
+        const actual: BN = await getTotalStakedAmount(tokamak1);
+        actual.should.be.bignumber.gt(expected);
     });
 });

@@ -33,7 +33,7 @@ export default class SeigManager {
         }
     }
 
-    public async stakeOf(layer2: string, account: string): Promise<BN> {
-        return toBN(await this._contract.methods.stakeOf(layer2, account).call());
+    public async stakeOf(layer2: string, account: string, blockNumber?: BN): Promise<BN> {
+        return toBN(await this._contract.methods.stakeOf(layer2, account).call(null, blockNumber == null ? "latest" : blockNumber));
     }
 }

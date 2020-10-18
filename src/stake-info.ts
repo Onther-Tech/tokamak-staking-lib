@@ -23,16 +23,19 @@ export const isLayer2 = (layer2: string): Promise<boolean> => {
     return Layer2Registry.instance().layer2s(layer2);
 };
 
-export const getStakedAmount = (layer2: string, account: string): Promise<BN> => {
-    return SeigManager.instance().stakeOf(layer2, account);
+export const getStakedAmount = async (layer2: string, account: string, blockNumber?: BN, untilBlockNumber?: BN): Promise<BN> => {
+    if (untilBlockNumber == null) return SeigManager.instance().stakeOf(layer2, account, blockNumber);
+    const startAmount: BN = await SeigManager.instance().stakeOf(layer2, account, blockNumber);
+    const endAmount: BN = await SeigManager.instance().stakeOf(layer2, account, untilBlockNumber);
+    return endAmount.sub(startAmount);
 };
 
-export const getTotalStakedAmount = async (account: string): Promise<BN> => {
+export const getTotalStakedAmount = async (account: string, blockNumber?: BN, untilBlockNumber?: BN): Promise<BN> => {
     let total: BN = new BN(0);
     const num: number = await getNumLayer2();
     for (let i: number = 0; i < num; ++i) {
         const layer2: string = await getLayer2ByIndex(i);
-        const amount: BN = await getStakedAmount(layer2, account);
+        const amount: BN = await getStakedAmount(layer2, account, blockNumber, untilBlockNumber);
         total = total.add(amount);
     }
 

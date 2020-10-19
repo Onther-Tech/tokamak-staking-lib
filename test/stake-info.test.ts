@@ -28,27 +28,22 @@ describe("Layer2Registry functions", () => {
 });
 
 describe("getStakedAmount function", () => {
+    const layer2: string = "0x39A13a796A3Cd9f480C28259230D2EF0a7026033";
+    const account: string = "0xEA8e2eC08dCf4971bdcdfFFe21439995378B44F3"; // tokamak1 operator
     it("should get staked amount of latest block", async () => {
-        const layer2: string = "0x39A13a796A3Cd9f480C28259230D2EF0a7026033";
-        const account: string = "0xEA8e2eC08dCf4971bdcdfFFe21439995378B44F3"; // tokamak1 operator
         const expected: BN = new BN(0);
         const actual: BN = await getStakedAmount(layer2, account);
         actual.should.be.bignumber.gt(expected);
     });
 
+    const blockNumber: BN = new BN(11072614);
     it("should get staked amount of specified block", async () => {
-        const layer2: string = "0x39A13a796A3Cd9f480C28259230D2EF0a7026033";
-        const account: string = "0xEA8e2eC08dCf4971bdcdfFFe21439995378B44F3"; // tokamak1 operator
-        const blockNumber: BN = new BN(11072614);
         const expected: BN = new BN(0);
         const actual: BN = await getStakedAmount(layer2, account, blockNumber);
         actual.should.be.bignumber.gt(expected);
     });
 
     it("should get staked amount difference during specified block period", async () => {
-        const layer2: string = "0x39A13a796A3Cd9f480C28259230D2EF0a7026033";
-        const account: string = "0xEA8e2eC08dCf4971bdcdfFFe21439995378B44F3"; // tokamak1 operator
-        const blockNumber: BN = new BN(11072614);
         const startAmount: BN = await getStakedAmount(layer2, account, blockNumber);
         const endAmount: BN = await getStakedAmount(layer2, account, blockNumber.add(new BN(1)));
         const expected: BN = endAmount.sub(startAmount);
@@ -58,30 +53,25 @@ describe("getStakedAmount function", () => {
 });
 
 describe("getTotalStakedAmount function", () => {
+    const account: string = "0xEA8e2eC08dCf4971bdcdfFFe21439995378B44F3"; // tokamak1 operator
     it("should get total staked amount of latest block", async () => {
-        const account: string = "0xEA8e2eC08dCf4971bdcdfFFe21439995378B44F3"; // tokamak1 operator
         const expected: BN = new BN(0);
         const actual: BN = await getTotalStakedAmount(account);
         actual.should.be.bignumber.gt(expected);
     });
 
+    const blockNumber: BN = new BN(11072614);
     it("should get total staked amount of specified block", async () => {
-        const account: string = "0xEA8e2eC08dCf4971bdcdfFFe21439995378B44F3"; // tokamak1 operator
-        const blockNumber: BN = new BN(11072614);
         const expected: BN = new BN(0);
         const actual: BN = await getTotalStakedAmount(account, blockNumber);
         actual.should.be.bignumber.gt(expected);
     });
 
     it("should get total staked amount difference during specified block period", async () => {
-        const account: string = "0xEA8e2eC08dCf4971bdcdfFFe21439995378B44F3"; // tokamak1 operator
-        const blockNumber: BN = new BN(11072614);
         const startAmount: BN = await getTotalStakedAmount(account, blockNumber);
         const endAmount: BN = await getTotalStakedAmount(account, blockNumber.add(new BN(1)));
         const expected: BN = endAmount.sub(startAmount);
-        // const actual: BN = await getTotalStakedAmount(account, blockNumber, blockNumber.add(new BN(1)));
-        getTotalStakedAmount(account, blockNumber, blockNumber.add(new BN(1))).then((actual: BN) => {
-            actual.should.be.bignumber.equal(expected);
-        });
+        const actual: BN = await getTotalStakedAmount(account, blockNumber, blockNumber.add(new BN(1)));
+        actual.should.be.bignumber.equal(expected);
     }).timeout(8000);
 });

@@ -5,8 +5,8 @@ const { toBN } = require("web3-utils");
 const chai = require("chai");
 chai.use(require("chai-bn")(BN)).should();
 
-const RAY = toBN("1000000000000000000000000000"); // 1e+27
-const tolerance = toBN("1000000000000000000");
+const RAY: BN = toBN("1000000000000000000000000000"); // 1e+27
+const tolerance: BN = toBN("1000000000000000000");
 
 const checkNumber = (
   a: BN,

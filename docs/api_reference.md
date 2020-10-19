@@ -1,4 +1,21 @@
 # Staking API Reference
+## Contents
+- [Prerequisites](#prerequisites)
+  - [Import Modules](#import-modules)
+  - [setNetwork](#setNetwork)
+- [Seigniorage Calculation](#seigniorage-calculation)
+  - [calculateExpectedSeig](#calculateExpectedSeig)
+  - [calculateExpectedSeigWithCommission](#calculateExpectedSeigWithCommission)
+  - [Calculator](#calculator)
+- [Layer2 Query](#layer2-query)
+  - [getNumLayer2](#getNumLayer2)
+  - [getLayer2ByIndex](#getLayer2ByIndex)
+  - [isLayer2](#isLayer2)
+- [Staking Query](#staking-query)
+  - [getStakedAmount](#getStakedAmount)
+  - [getTotalStakedAmount](#getTotalStakedAmount)
+- [Test Code](#test-code)
+
 ## Prerequisites
 ### Import Modules
 First of all, You must import the modules you want to use in your source code before using them. For example, if you want to use `calculateExpectedSeig` function, you must import it just like the example code below.
@@ -66,7 +83,14 @@ const totalStakedAmount = toBN("2000000").mul(RAY);
 const totalSupplyOfTON = toBN("50000000").mul(RAY);
 const pseigRate = toBN("4").mul(RAY).div(toBN("10"));
 
-const expectedSeig = calculateExpectedSeig(fromBlockNumber, toBlockNumber, userStakedAmount, totalStakedAmount, totalSupplyOfTON, pseigRate);
+const expectedSeig = calculateExpectedSeig(
+  fromBlockNumber,
+  toBlockNumber,
+  userStakedAmount,
+  totalStakedAmount,
+  totalSupplyOfTON,
+  pseigRate
+);
 
 console.log(expectedSeig); // 8309568960000000000000000000
 ```
@@ -121,7 +145,19 @@ const operatorStakedAmount = toBN("500000").mul(RAY);
 const totalStakedAmountOnLayer2 = toBN("1000000").mul(RAY);
 const isOperator = false;
 
-const expectedSeigWithCommission = calculateExpectedSeigWithCommission(fromBlockNumber, toBlockNumber, userStakedAmount, totalStakedAmount, totalSupplyOfTON, pseigRate, commissionRate, isCommissionRateNegative, operatorStakedAmount, totalStakedAmountOnLayer2, isOperator);
+const expectedSeigWithCommission = calculateExpectedSeigWithCommission(
+  fromBlockNumber,
+  toBlockNumber,
+  userStakedAmount,
+  totalStakedAmount,
+  totalSupplyOfTON,
+  pseigRate,
+  commissionRate,
+  isCommissionRateNegative,
+  operatorStakedAmount,
+  totalStakedAmountOnLayer2,
+  isOperator
+);
 
 console.log(expectedSeigWithCommission);
 ```
@@ -239,7 +275,7 @@ console.log(amount2); // 1314038239592196329341829580966
 
 // 3. It gets the staked amount difference during the specified block period.
 const amount3 = await getStakedAmount(layer2, account, blockNumber, blockNumber.add(new BN(1)));
-console.log(amount3); // 19961216056484449266017300338 = 1333999455648680778607846881304 - 1314038239592196329341829580966
+console.log(amount3); // 19961216056484449266017300338
 ```
 
 ### getTotalStakedAmount
@@ -271,11 +307,11 @@ console.log(amount2); // 1314038239592196329341829580966
 
 // 3. It gets the total staked amount difference during the specified block period.
 const amount3 = await getTotalStakedAmount(account, blockNumber, blockNumber.add(new BN(1)));
-console.log(amount3); // 19961216056484449266017300338 = 1333999455648680778607846881304 - 1314038239592196329341829580966
+console.log(amount3); // 19961216056484449266017300338
 ```
 
 ## Test Code
-For more details, please refer to the test code pages below.
+For more details, refer to the test code pages below.
 - [seigniorage-calculator.test.ts]
 - [stake-info.test.ts]
 

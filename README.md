@@ -24,3 +24,13 @@ For more information about how to use the tokamak staking library, refer to [Sta
 
 [Deployed Contracts on Mainnet]: <https://github.com/Onther-Tech/plasma-evm-contracts#deployed-contracts-on-mainnet>
 [Staking API Reference]: <./docs/api_reference.md>
+
+## Examples
+### Staking Query
+To install and run `Staking Query`, put the below commands on your terminal.
+```
+$ git clone https://github.com/Onther-Tech/tokamak-staking-lib.git
+$ cd tokamak-staking-lib/examples/staking_query
+$ npm install
+$ node index.js
+```

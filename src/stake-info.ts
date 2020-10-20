@@ -23,20 +23,35 @@ export const isLayer2 = (layer2: string): Promise<boolean> => {
     return Layer2Registry.instance().layer2s(layer2);
 };
 
-export const getStakedAmount = async (layer2: string, account: string, blockNumber?: BN, untilBlockNumber?: BN): Promise<BN> => {
-    if (untilBlockNumber == null) return SeigManager.instance().stakeOf(layer2, account, blockNumber);
-    const startAmount: BN = await SeigManager.instance().stakeOf(layer2, account, blockNumber);
-    const endAmount: BN = await SeigManager.instance().stakeOf(layer2, account, untilBlockNumber);
-    return endAmount.sub(startAmount);
+export const getStakedAmount = async (layer2: string, account: string, blockNumber?: BN): Promise<BN> => {
+    return SeigManager.instance().stakeOf(layer2, account, blockNumber);
 };
 
-export const getTotalStakedAmount = async (account: string, blockNumber?: BN, untilBlockNumber?: BN): Promise<BN> => {
+export const getStakedAmountDiff = async (layer2: string, account: string, fromBlockNumber: BN, toBlockNumber?: BN): Promise<BN> => {
+    const fromAmount: BN = await SeigManager.instance().stakeOf(layer2, account, fromBlockNumber);
+    const toAmount: BN = await SeigManager.instance().stakeOf(layer2, account, toBlockNumber);
+    return toAmount.sub(fromAmount);
+};
+
+export const getTotalStakedAmount = async (account: string, blockNumber?: BN): Promise<BN> => {
     let total: BN = new BN(0);
     const num: number = await getNumLayer2();
     for (let i: number = 0; i < num; ++i) {
         const layer2: string = await getLayer2ByIndex(i);
-        const amount: BN = await getStakedAmount(layer2, account, blockNumber, untilBlockNumber);
+        const amount: BN = await getStakedAmount(layer2, account, blockNumber);
         total = total.add(amount);
+    }
+
+    return total;
+};
+
+export const getTotalStakedAmountDiff = async (account: string, fromBlockNumber: BN, toBlockNumber?: BN): Promise<BN> => {
+    let total: BN = new BN(0);
+    const num: number = await getNumLayer2();
+    for (let i: number = 0; i < num; ++i) {
+        const layer2: string = await getLayer2ByIndex(i);
+        const diff: BN = await getStakedAmountDiff(layer2, account, fromBlockNumber, toBlockNumber);
+        total = total.add(diff);
     }
 
     return total;

@@ -13,7 +13,9 @@
   - [isLayer2](#isLayer2)
 - [Staking Query](#staking-query)
   - [getStakedAmount](#getStakedAmount)
+  - [getStakedAmountDiff](#getStakedAmountDiff)
   - [getTotalStakedAmount](#getTotalStakedAmount)
+  - [getTotalStakedAmountDiff](#getTotalStakedAmountDiff)
 - [Test Code](#test-code)
 
 ## Prerequisites
@@ -247,17 +249,16 @@ console.log(result);
 ### getStakedAmount
 This function gets the staked amount by layer2 and account.
 ```
-async function getStakedAmount(layer2: string, account: string, blockNumber?: BN, untilBlockNumber?: BN): Promise<BN>
+async function getStakedAmount(layer2: string, account: string, blockNumber?: BN): Promise<BN>
 ```
 
 #### Parameters
 1. `layer2: string` - The layer2 address.
 2. `account: string` - The account address.
-3. `blockNumber: BN (optional)` - The block number. If you specify `blockNumber`, you will get the staked amount of the specified block. Otherwise, you will get the staked amount of the latest block.
-4. `untilBlockNumber: BN (optional)` - The until block number. If you specify `untilBlockNumber`, you will get the staked amount difference during the specified block period which is from `blockNumber` to `untilBlockNumber`.
+3. `blockNumber: BN (optional)` - The block number. If you don't specify `blockNumber`, it will be `latest` by default.
 
 #### Returns
-1. `stakedAmount: Promise<BN>` - The staked amount.
+1. `stakedAmount: Promise<BN>` - The staked amount of the specified block.
 
 #### Example
 ```
@@ -271,26 +272,52 @@ console.log(amount1);
 
 // 2. It gets the staked amount of the specified block.
 const amount2 = await getStakedAmount(layer2, account, blockNumber);
-console.log(amount2); // 1314038239592196329341829580966
+console.log(amount2);
+```
 
-// 3. It gets the staked amount difference during the specified block period.
-const amount3 = await getStakedAmount(layer2, account, blockNumber, blockNumber.add(new BN(1)));
-console.log(amount3); // 19961216056484449266017300338
+### getStakedAmountDiff
+This function gets the staked amount difference by layer2 and account.
+```
+async function getStakedAmountDiff(layer2: string, account: string, fromBlockNumber: BN, toBlockNumber?: BN): Promise<BN>
+```
+
+#### Parameters
+1. `layer2: string` - The layer2 address.
+2. `account: string` - The account address.
+3. `fromBlockNumber: BN` - The starting block number of the block period.
+4. `toBlockNumber: BN (optional)` - The ending block number of the block period. If you don't specify `toBlockNumber`, it will be `latest` by default.
+
+#### Returns
+1. `stakedAmountDiff: Promise<BN>` - The staked amount difference of the specified block period.
+
+#### Example
+```
+const layer2 = "0x39A13a796A3Cd9f480C28259230D2EF0a7026033";
+const account = "0xEA8e2eC08dCf4971bdcdfFFe21439995378B44F3"; // tokamak1 operator
+const fromBlockNumber = new BN(11072614);
+const toBlockNumber = fromBlockNumber.add(new BN(1));
+
+// 1. It gets the staked amount difference of the specified block period.
+const amount1 = await getStakedAmountDiff(layer2, account, fromBlockNumber, toBlockNumber);
+console.log(amount1);
+
+// 2. It gets the staked amount difference of the specified block period (until the latest block).
+const amount2 = await getStakedAmountDiff(layer2, account, fromBlockNumber);
+console.log(amount2);
 ```
 
 ### getTotalStakedAmount
 This function gets the total staked amount of all layer2s by account.
 ```
-async function getTotalStakedAmount(account: string, blockNumber?: BN, untilBlockNumber?: BN): Promise<BN>
+async function getTotalStakedAmount(account: string, blockNumber?: BN): Promise<BN>
 ```
 
 #### Parameters
 1. `account: string` - The account address.
-2. `blockNumber: BN (optional)` - The block number. If you specify `blockNumber`, you will get the total staked amount of the specified block. Otherwise, you will get the total staked amount of the latest block.
-3. `untilBlockNumber: BN (optional)` - The until block number. If you specify `untilBlockNumber`, you will get the total staked amount difference during the specified block period which is from `blockNumber` to `untilBlockNumber`.
+2. `blockNumber: BN (optional)` - The block number. If you don't specify `blockNumber`, it will be `latest` by default.
 
 #### Returns
-1. `totalStakedAmount: Promise<BN>` - The total staked amount.
+1. `totalStakedAmount: Promise<BN>` - The total staked amount of the specified block.
 
 #### Example
 ```
@@ -303,11 +330,36 @@ console.log(amount1);
 
 // 2. It gets the total staked amount of the specified block.
 const amount2 = await getTotalStakedAmount(account, blockNumber);
-console.log(amount2); // 1314038239592196329341829580966
+console.log(amount2);
+```
 
-// 3. It gets the total staked amount difference during the specified block period.
-const amount3 = await getTotalStakedAmount(account, blockNumber, blockNumber.add(new BN(1)));
-console.log(amount3); // 19961216056484449266017300338
+### getTotalStakedAmountDiff
+This function gets the total staked amount difference of all layer2s by account.
+```
+async function getTotalStakedAmountDiff(account: string, fromBlockNumber: BN, toBlockNumber?: BN): Promise<BN>
+```
+
+#### Parameters
+1. `account: string` - The account address.
+2. `fromBlockNumber: BN` - The starting block number of the block period.
+3. `toBlockNumber: BN (optional)` - The ending block number of the block period. If you don't specify `toBlockNumber`, it will be `latest` by default.
+
+#### Returns
+1. `totalStakedAmountDiff: Promise<BN>` - The total staked amount difference of the specified block period.
+
+#### Example
+```
+const account = "0xEA8e2eC08dCf4971bdcdfFFe21439995378B44F3"; // tokamak1 operator
+const fromBlockNumber = new BN(11072614);
+const toBlockNumber = fromBlockNumber.add(new BN(1));
+
+// 1. It gets the total staked amount difference of the specified block period.
+const amount1 = await getTotalStakedAmountDiff(account, fromBlockNumber, toBlockNumber);
+console.log(amount1);
+
+// 2. It gets the total staked amount difference of the specified block period (until the latest block).
+const amount2 = await getTotalStakedAmountDiff(account, fromBlockNumber);
+console.log(amount2);
 ```
 
 ## Test Code

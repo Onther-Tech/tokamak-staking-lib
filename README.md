@@ -1,59 +1,36 @@
-# tokamak-staking-lib
-Tokamak network staking library
+# Tokamak Staking Library
+## Notice
+The current seigniorage per block in SeigManager is 3.92.
+All number units in this library uses RAY (1e27) to prevent number errors.
 
-# Notice
+## Related Contracts
+To get the information about related contracts, refer to [Deployed Contracts on Mainnet].
 
-The current seigniorage per block in SeigManager is 3.92.   
-All number unit in this library is RAY(1e27) to reduce number errors.
-
-# Related contracts
-
-https://github.com/Onther-Tech/plasma-evm-contracts#deployed-contracts-on-mainnet
-
-# Usage
-
-Add dependency in "package.json"
-
-`"tokamak-staking-lib": "^0.0.3",`
-
-Install the package
-
-`npm install`
-
-Include library in your code
-
-`const { calculateExpectedSeig, calculateExpectedSeigWithCommission } = require('tokamak-staking-lib');`
-
-Calculate the expected seigniorage
-
+## Installation
+First, add `tokamak-staking-lib` as a dependency in `package.json` file.
 ```
-function calculateExpectedSeig(
-  fromBlockNumber: BN, // the latest commited block number. You can get this using seigManager.lastCommitBlock(layer2)
-  toBlockNumber: BN, // the target block number which you want to calculate seigniorage
-  userStakedAmount: BN, // the staked WTON amount of user. You can get this using coinage.balanceOf(user)
-  totalStakedAmount: BN, // the staked WTON amount in SeigManager. You can get this using tot.totalSupply()
-  totalSupplyOfTON: BN, // the current totalSupply of TON in RAY unit. You can get this using ton.totalSupply() - ton.balanceOf(WTON) + tot.totalSupply()
-  pseigRate: BN // pseig rate in RAY unit. the current value is 0.4. You can get this using seigManager.relativeSeigRate()
-)
+"dependencies": {
+  "tokamak-staking-lib": "^0.0.9",
+},
 ```
 
-Calculate the expected seigniorage with commission rate
-
-```
-function calculateExpectedSeigWithCommission(
-  fromBlockNumber: BN, // the latest commited block number. You can get this using seigManager.lastCommitBlock(layer2)
-  toBlockNumber: BN, // the target block number which you want to calculate seigniorage
-  userStakedAmount: BN, // the staked WTON amount of user. You can get this using coinage.balanceOf(user)
-  totalStakedAmount: BN, // the staked WTON amount in SeigManager. You can get this using tot.totalSupply()
-  totalSupplyOfTON: BN, // the current totalSupply of TON in RAY unit. You can get this using ton.totalSupply() - ton.balanceOf(WTON) + tot.totalSupply()
-  pseigRate: BN, // pseig rate in RAY unit. the current value is 0.4. You can get this using seigManager.relativeSeigRate()
-  commissionRate: BN, // The commission rate of the current layer2. You can get this using seigManager.commissionRates(layer2)
-  isCommissionRateNegative: boolean, // Whether the commission rate of the current layer2 is negative. You can get this using seigManager.isCommissionRateNegative(layer2)
-  operatorStakedAmount: BN, // operator's staking amount. You can get this using coinage.balanceOf(operator)
-  totalStakedAmountOnLayer2: BN, // The total amount in the current layer2. You can get this using coinage.totalSupply()
-  isOperator: boolean // Whether the user you want to calculate the seig is operator.
-)
+Then, install the package to your local directory.
+```sh
+$ npm install
 ```
 
-or you can use Calculator class instead of function. Please check the below test code.
-https://github.com/Onther-Tech/tokamak-staking-lib/blob/master/test/seigniorage-calculator.test.ts#L34-L48
+## API Reference
+For more information about how to use the tokamak staking library, refer to [Staking API Reference].
+
+[Deployed Contracts on Mainnet]: <https://github.com/Onther-Tech/plasma-evm-contracts#deployed-contracts-on-mainnet>
+[Staking API Reference]: <./docs/api_reference.md>
+
+## Examples
+### Staking Query
+To install and run `Staking Query`, put the below commands on your terminal.
+```
+$ git clone https://github.com/Onther-Tech/tokamak-staking-lib.git
+$ cd tokamak-staking-lib/examples/staking_query
+$ npm install
+$ node index.js
+```

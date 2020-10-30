@@ -28,7 +28,7 @@ export default class SeigManager {
                 break;
 
             case "rinkeby":
-                SeigManager._address = "0x0ed93958871Cd9512d5de65CFeb6f4837c0d5B17";
+                SeigManager._address = "0xdb6046F3b59395A126a324E63aC93f4c38119055";
                 break;
         }
     }

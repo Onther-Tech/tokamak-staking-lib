@@ -26,7 +26,7 @@ export default class Layer2Registry {
                 break;
 
             case "rinkeby":
-                Layer2Registry._address = "0xF7dbB432b68295329790EF81fedE861645969112";
+                Layer2Registry._address = "0x4d031C0E74cE863F3885342C4FF6B6557449f068";
                 break;
         }
     }

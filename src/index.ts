@@ -1,2 +1,3 @@
 export * from "./seigniorage-calculator";
-export * from "./stake-info";
+export * from "./staking-query";
+export * from "./staking-update";

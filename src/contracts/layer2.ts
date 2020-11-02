@@ -2,6 +2,7 @@ import { Contract } from "web3-eth-contract";
 import Web3Connector from "../common/web3-connector";
 const Layer2ABI = require("./abi/Layer2.json");
 import BN from "bn.js";
+const { toBN } = require("web3-utils");
 
 export default class Layer2 {
     private _contract: Contract;
@@ -11,28 +12,26 @@ export default class Layer2 {
         this._contract = new web3.eth.Contract(Layer2ABI, address);
     }
 
-    public async commitDummy(from: string) {
-        const costNRB = await this._contract.methods.COST_NRB().call();
-        const NRELength = await this._contract.methods.NRELength().call();
-        const currentForkNumber = await this._contract.methods.currentFork().call();
+    public async commitDummy(from: string): Promise<any> {
+        const costNRB: string = await this._contract.methods.COST_NRB().call();
+        const NRELength: string = await this._contract.methods.NRELength().call();
+        const currentForkNumber: string = await this._contract.methods.currentFork().call();
 
-        const fork = await this._contract.methods.forks(currentForkNumber).call();
-        const epochNumber: number = parseInt(fork.lastEpoch) + 1;
-        const startBlockNumber: number = parseInt(fork.lastBlock) + 1;
-        const endBlockNumber: number = startBlockNumber + parseInt(NRELength) - 1;
+        const fork: any = await this._contract.methods.forks(currentForkNumber).call();
+        const epochNumber: BN = toBN(fork.lastEpoch).add(new BN(1));
+        const startBlockNumber: BN = toBN(fork.lastBlock).add(new BN(1));
+        const endBlockNumber: BN = startBlockNumber.add(toBN(NRELength)).sub(new BN(1));
 
-        const pos1: string = this.makePos(currentForkNumber, epochNumber);
+        const pos1: string = this.makePos(toBN(currentForkNumber), epochNumber);
         const pos2: string = this.makePos(startBlockNumber, endBlockNumber);
         const dummy = "0xdb431b544b2f5468e3f771d7843d9c5df3b4edcf8bc1c599f18f0b4ea8709bc3";
 
-        await this._contract.methods.submitNRE(pos1, pos2, dummy, dummy, dummy).send({from: from, value: costNRB});
+        return this._contract.methods.submitNRE(pos1, pos2, dummy, dummy, dummy).send({from: from, value: costNRB});
     }
 
-    private makePos(v1: number, v2: number): string {
-        const b1: BN = new BN(v1);
-        const b2: BN = new BN(v2);
-        const temp: BN = b1.mul(new BN(2).pow(new BN(128)));
-        return temp.add(b2).toString();
+    private makePos(v1: BN, v2: BN): string {
+        const temp: BN = v1.mul(new BN(2).pow(new BN(128)));
+        return temp.add(v2).toString();
     }
 
     public operator(): Promise<string> {

@@ -1,6 +1,5 @@
 import { provider } from "web3-core";
 import BN from "bn.js";
-const { toBN } = require("web3-utils");
 import Web3Connector from "./common/web3-connector";
 import Layer2Registry from "./contracts/layer2-registry";
 import SeigManager from "./contracts/seig-manager";

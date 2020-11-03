@@ -429,7 +429,7 @@ console.log(receipt);
 ## Test Code
 For more details, refer to the test code pages below.
 - [seigniorage-calculator.test.ts]
-- [stake-query.test.ts]
+- [staking-query.test.ts]
 
 [seigniorage-calculator.test.ts]: <../test/seigniorage-calculator.test.ts>
-[stake-query.test.ts]: <../test/stake-query.test.ts>
+[staking-query.test.ts]: <../test/staking-query.test.ts>

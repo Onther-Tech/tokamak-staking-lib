@@ -4,7 +4,7 @@ import BN from "bn.js";
 
 program
     .option("-n, --net [value]", "network name. e.g. mainnet / rinkeby")
-    .option("-h, --host [value]", "web3 provider host")
+    .option("-e, --endpoint [value]", "web3 provider rpc endpoint")
     .option("-f, --func [value]", "function name")
     .option("-p, --param [value]", "function parameters splited by comma")
     .parse(process.argv);
@@ -14,16 +14,16 @@ require("dotenv").config();
 async function main() {
     const {
         net,
-        host,
+        endpoint,
         func,
         param = ""
     } = program;
 
     if (!net) throw new Error("--net not provided");
-    if (!host) throw new Error("--host not provided");
+    if (!endpoint) throw new Error("--endpoint not provided");
     if (!func) throw new Error("--func not provided");
 
-    tokamak.setNetwork(host, net);
+    tokamak.setNetwork(endpoint, net);
 
     let params = param.split(",");
     params.forEach((element, index) => params[index] = element.trim());

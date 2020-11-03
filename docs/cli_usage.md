@@ -21,7 +21,7 @@ $ sudo npm install -g ts-node
 ## Usage
 To run the cli, put the below commands with options on your terminal.
 ```sh
-$ ts-node cli.ts -n [net] -h [host] -f [func] -p [param]
+$ ts-node cli.ts -n [net] -e [endpoint] -f [func] -p [param]
 ```
 
 To display the cli options, put the help command on your terminal.
@@ -30,11 +30,11 @@ $ ts-node cli.ts --help
 Usage: cli [options]
 
 Options:
-  -n, --net [value]    network name. e.g. mainnet / rinkeby
-  -h, --host [value]   web3 provider host
-  -f, --func [value]   function name
-  -p, --param [value]  function parameters splited by comma
-  --help               display help for command
+  -n, --net [value]       network name. e.g. mainnet / rinkeby
+  -e, --endpoint [value]  web3 provider rpc endpoint
+  -f, --func [value]      function name
+  -p, --param [value]     function parameters splited by comma
+  -h, --help              display help for command
 ```
 
 ## Examples
@@ -42,7 +42,7 @@ Options:
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -h https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 \
+    -e https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 \
     -f getNumLayer2
 ```
 
@@ -50,7 +50,7 @@ $ ts-node cli.ts \
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -h https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 \
+    -e https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 \
     -f getLayer2ByIndex \
     -p 0
 ```
@@ -59,7 +59,7 @@ $ ts-node cli.ts \
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -h https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 \
+    -e https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 \
     -f isLayer2 \
     -p 0xA10ae25583cA45d38b392aDe535a53B73dA142E7
 ```
@@ -68,7 +68,7 @@ $ ts-node cli.ts \
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -h https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 \
+    -e https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 \
     -f getOperator \
     -p 0xA10ae25583cA45d38b392aDe535a53B73dA142E7
 ```
@@ -77,7 +77,7 @@ $ ts-node cli.ts \
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -h https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 \
+    -e https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 \
     -f isSubmitter \
     -p "0xA10ae25583cA45d38b392aDe535a53B73dA142E7,0xDf08F82De32B8d460adbE8D72043E3a7e25A3B39"
 ```
@@ -86,7 +86,7 @@ $ ts-node cli.ts \
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -h https://api.infura.io/v1/jsonrpc/rinkeby \
+    -e https://api.infura.io/v1/jsonrpc/rinkeby \
     -f getStakedAmount \
     -p "0xA10ae25583cA45d38b392aDe535a53B73dA142E7,0xDf08F82De32B8d460adbE8D72043E3a7e25A3B39,latest"
 ```
@@ -95,7 +95,7 @@ $ ts-node cli.ts \
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -h https://api.infura.io/v1/jsonrpc/rinkeby \
+    -e https://api.infura.io/v1/jsonrpc/rinkeby \
     -f getStakedAmountDiff \
     -p "0xA10ae25583cA45d38b392aDe535a53B73dA142E7,0xDf08F82De32B8d460adbE8D72043E3a7e25A3B39,7475257,7475258"
 ```
@@ -104,7 +104,7 @@ $ ts-node cli.ts \
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -h https://api.infura.io/v1/jsonrpc/rinkeby \
+    -e https://api.infura.io/v1/jsonrpc/rinkeby \
     -f getTotalStakedAmount \
     -p "0xDf08F82De32B8d460adbE8D72043E3a7e25A3B39,latest"
 ```
@@ -113,7 +113,7 @@ $ ts-node cli.ts \
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -h https://api.infura.io/v1/jsonrpc/rinkeby \
+    -e https://api.infura.io/v1/jsonrpc/rinkeby \
     -f getTotalStakedAmountDiff \
     -p "0xDf08F82De32B8d460adbE8D72043E3a7e25A3B39,7475257,7475258"
 ```
@@ -122,7 +122,7 @@ $ ts-node cli.ts \
 ```sh
 $ ts-node cli.ts \
     -n rinkeby  \
-    -h https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839  \
+    -e https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839  \
     -f commitDummy  \
     -p "0xA10ae25583cA45d38b392aDe535a53B73dA142E7,[private-key]"
 ```

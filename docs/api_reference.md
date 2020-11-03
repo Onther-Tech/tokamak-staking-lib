@@ -11,11 +11,15 @@
   - [getNumLayer2](#getNumLayer2)
   - [getLayer2ByIndex](#getLayer2ByIndex)
   - [isLayer2](#isLayer2)
+  - [getOperator](#getOperator)
+  - [isSubmitter](#isSubmitter)
 - [Staking Query](#staking-query)
   - [getStakedAmount](#getStakedAmount)
   - [getStakedAmountDiff](#getStakedAmountDiff)
   - [getTotalStakedAmount](#getTotalStakedAmount)
   - [getTotalStakedAmountDiff](#getTotalStakedAmountDiff)
+- [Layer2 Update](#layer2-update)
+  - [commitDummy](#commitDummy)
 - [Test Code](#test-code)
 
 ## Prerequisites
@@ -237,11 +241,49 @@ function isLayer2(layer2: string): Promise<boolean>
 1. `layer2: string` - The address to check whether it's a layer2 address.
 
 #### Returns
-1. `isLayer2: Promise<boolean>` -  Whether the given address is a layer2 address.
+1. `isLayer2: Promise<boolean>` - Whether the given address is a layer2 address.
 
 #### Example
 ```
 const result = await isLayer2("0x39A13a796A3Cd9f480C28259230D2EF0a7026033");
+console.log(result);
+```
+
+### getOperator
+This function gets operator address.
+```
+function getOperator(layer2: string): Promise<string>
+```
+
+#### Parameters
+1. `layer2: string` - The layer2 address.
+
+#### Returns
+1. `operator: Promise<string>` - The operator address.
+
+#### Example
+```
+const layer2 = "0x39A13a796A3Cd9f480C28259230D2EF0a7026033";
+const operator = await tokamak.getOperator(layer2);
+console.log(operator);
+```
+
+### isSubmitter
+This function checks whether the given account is a submitter.
+```
+function isSubmitter(layer2: string, account: string): Promise<boolean>
+```
+
+#### Parameters
+1. `layer2: string` - The layer2 address.
+2. `account: string` - The account address to check whether it's a submitter.
+
+#### Returns
+1. `isSubmitter: Promise<boolean>` - Whether the given account address is a submitter.
+
+#### Example
+```
+const result = await isSubmitter("0xEA8e2eC08dCf4971bdcdfFFe21439995378B44F3");
 console.log(result);
 ```
 
@@ -362,10 +404,32 @@ const amount2 = await getTotalStakedAmountDiff(account, fromBlockNumber);
 console.log(amount2);
 ```
 
+## Layer2 Update
+### commitDummy
+This function commits dummy data.
+```
+function commitDummy(layer2: string, privkey: string): Promise<any>
+```
+
+#### Parameters
+1. `layer2: string`: The layer2 address.
+2. `privkey: string`: The submitter's private key. Generally, the operator is the submitter.
+
+#### Returns
+1. `receipt: Promise<any>`: The transaction receipt.
+
+#### Example
+```
+const layer2 = "0x39A13a796A3Cd9f480C28259230D2EF0a7026033";
+const privkey = "???";
+const receipt = await commitDummy(layer2, privkey);
+console.log(receipt);
+```
+
 ## Test Code
 For more details, refer to the test code pages below.
 - [seigniorage-calculator.test.ts]
 - [stake-info.test.ts]
 
 [seigniorage-calculator.test.ts]: <../test/seigniorage-calculator.test.ts>
-[stake-info.test.ts]: <../test/stake-info.test.ts>
+[stake-query.test.ts]: <../test/stake-query.test.ts>

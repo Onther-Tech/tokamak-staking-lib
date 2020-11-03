@@ -27,6 +27,16 @@ describe("Layer2Registry functions", () => {
     });
 });
 
+describe("Layer2 functions", () => {
+    const layer2: string = "0xA10ae25583cA45d38b392aDe535a53B73dA142E7";
+    it("should get operator and be submitter", async () => {
+        const operator: string = await tokamak.getOperator(layer2);
+        const expected: boolean = true;
+        const actual: boolean = await tokamak.isSubmitter(layer2, operator);
+        actual.should.equal(expected);
+    });
+});
+
 describe("getStakedAmount functions", () => {
     const layer2: string = "0xA10ae25583cA45d38b392aDe535a53B73dA142E7";
     const account: string = "0xDf08F82De32B8d460adbE8D72043E3a7e25A3B39"; // operator
@@ -94,14 +104,4 @@ describe("getTotalStakedAmount functions", () => {
         const actual: BN = await tokamak.getTotalStakedAmountDiff(account, fromBlockNumber);
         actual.should.be.bignumber.equal(expected);
     }).timeout(10000);
-});
-
-describe("Layer2 functions", () => {
-    const layer2: string = "0xA10ae25583cA45d38b392aDe535a53B73dA142E7";
-    it("should get operator and be submitter", async () => {
-        const operator: string = await tokamak.getOperator(layer2);
-        const expected: boolean = true;
-        const actual: boolean = await tokamak.isSubmitter(layer2, operator);
-        actual.should.equal(expected);
-    });
 });

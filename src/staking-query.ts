@@ -24,6 +24,14 @@ export const isLayer2 = (layer2: string): Promise<boolean> => {
     return Layer2Registry.instance().layer2s(layer2);
 };
 
+export const getOperator = (layer2: string): Promise<string> => {
+    return Layer2s.get(layer2).operator();
+};
+
+export const isSubmitter = (layer2: string, account: string): Promise<boolean> => {
+    return Layer2s.get(layer2).isSubmitter(account);
+};
+
 export const getStakedAmount = async (layer2: string, account: string, blockNumber?: BN): Promise<BN> => {
     return SeigManager.instance().stakeOf(layer2, account, blockNumber);
 };
@@ -56,12 +64,4 @@ export const getTotalStakedAmountDiff = async (account: string, fromBlockNumber:
     }
 
     return total;
-};
-
-export const getOperator = (layer2: string): Promise<string> => {
-    return Layer2s.get(layer2).operator();
-};
-
-export const isSubmitter = (layer2: string, account: string): Promise<boolean> => {
-    return Layer2s.get(layer2).isSubmitter(account);
 };

@@ -22,15 +22,19 @@ $ npm install
 ## API Reference
 For more information about how to use the tokamak staking library, refer to [Staking API Reference].
 
-[Deployed Contracts on Mainnet]: <https://github.com/Onther-Tech/plasma-evm-contracts#deployed-contracts-on-mainnet>
-[Staking API Reference]: <./docs/api_reference.md>
+## CLI Usage
+For information about how to use the cli, refer to [Staking CLI Usage].
 
 ## Examples
 ### Staking Query
 To install and run `Staking Query`, put the below commands on your terminal.
-```
+```sh
 $ git clone https://github.com/Onther-Tech/tokamak-staking-lib.git
 $ cd tokamak-staking-lib/examples/staking_query
 $ npm install
 $ node index.js
 ```
+
+[Deployed Contracts on Mainnet]: <https://github.com/Onther-Tech/plasma-evm-contracts#deployed-contracts-on-mainnet>
+[Staking API Reference]: <./docs/api_reference.md>
+[Staking CLI Usage]: <./docs/cli_usage.md>

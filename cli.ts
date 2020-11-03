@@ -29,6 +29,7 @@ async function main() {
     params.forEach((element, index) => params[index] = element.trim());
     const result = await tokamak[func](...params);
     BN.isBN(result) ? console.log(result.toString()) : console.log(result);
+
     process.exit(0);
 }
 

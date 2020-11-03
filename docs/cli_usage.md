@@ -120,9 +120,9 @@ $ ts-node cli.ts \
 
 ### [commitDummy](./api_reference.md#commitDummy)
 ```sh
-$ ts-node cli.ts 
-    -n rinkeby 
-    -h https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 
-    -f commitDummy 
+$ ts-node cli.ts \
+    -n rinkeby  \
+    -h https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839  \
+    -f commitDummy  \
     -p "0xA10ae25583cA45d38b392aDe535a53B73dA142E7,[private-key]"
 ```

@@ -1,6 +1,6 @@
 {
   "name": "tokamak-staking-lib",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "tokamak staking library",
   "main": "./src/index.js",
   "directories": {
@@ -20,7 +20,10 @@
     "web3": "^1.3.0",
     "web3-core": "^1.3.0",
     "web3-eth-contract": "^1.3.0",
-    "web3-utils": "^1.2.1"
+    "web3-utils": "^1.2.1",
+    "truffle-privatekey-provider": "^1.3.0",
+    "commander": "^5.1.0",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.4",

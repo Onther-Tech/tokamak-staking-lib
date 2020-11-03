@@ -1,9 +1,10 @@
 import { provider } from "web3-core";
 import BN from "bn.js";
-const { toBN } = require("web3-utils");
 import Web3Connector from "./common/web3-connector";
 import Layer2Registry from "./contracts/layer2-registry";
 import SeigManager from "./contracts/seig-manager";
+import Layer2s from "./contracts/layer2s";
+const PrivatekeyProvider = require("truffle-privatekey-provider");
 
 export const setNetwork = (provider: provider, net: string = "mainnet") => {
     Web3Connector.setNetwork(provider);
@@ -21,6 +22,14 @@ export const getLayer2ByIndex = (index: number): Promise<string> => {
 
 export const isLayer2 = (layer2: string): Promise<boolean> => {
     return Layer2Registry.instance().layer2s(layer2);
+};
+
+export const getOperator = (layer2: string): Promise<string> => {
+    return Layer2s.get(layer2).operator();
+};
+
+export const isSubmitter = (layer2: string, account: string): Promise<boolean> => {
+    return Layer2s.get(layer2).isSubmitter(account);
 };
 
 export const getStakedAmount = async (layer2: string, account: string, blockNumber?: BN): Promise<BN> => {

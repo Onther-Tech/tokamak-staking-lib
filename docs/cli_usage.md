@@ -42,7 +42,7 @@ Options:
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -e https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 \
+    -e https://rinkeby.infura.io/v3/[infura_key] \
     -f getNumLayer2
 ```
 
@@ -50,36 +50,36 @@ $ ts-node cli.ts \
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -e https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 \
+    -e https://rinkeby.infura.io/v3/[infura_key] \
     -f getLayer2ByIndex \
-    -p 0
+    -p [index]
 ```
 
 ### [isLayer2](./api_reference.md#isLayer2)
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -e https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 \
+    -e https://rinkeby.infura.io/v3/[infura_key] \
     -f isLayer2 \
-    -p 0xA10ae25583cA45d38b392aDe535a53B73dA142E7
+    -p [layer2]
 ```
 
 ### [getOperator](./api_reference.md#getOperator)
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -e https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 \
+    -e https://rinkeby.infura.io/v3/[infura_key] \
     -f getOperator \
-    -p 0xA10ae25583cA45d38b392aDe535a53B73dA142E7
+    -p [layer2]
 ```
 
 ### [isSubmitter](./api_reference.md#isSubmitter)
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -e https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839 \
+    -e https://rinkeby.infura.io/v3/[infura_key] \
     -f isSubmitter \
-    -p "0xA10ae25583cA45d38b392aDe535a53B73dA142E7,0xDf08F82De32B8d460adbE8D72043E3a7e25A3B39"
+    -p "[layer2],[account]"
 ```
 
 ### [getStakedAmount](./api_reference.md#getStakedAmount)
@@ -88,7 +88,7 @@ $ ts-node cli.ts \
     -n rinkeby \
     -e https://api.infura.io/v1/jsonrpc/rinkeby \
     -f getStakedAmount \
-    -p "0xA10ae25583cA45d38b392aDe535a53B73dA142E7,0xDf08F82De32B8d460adbE8D72043E3a7e25A3B39,latest"
+    -p "[layer2],[account],[blockNumber]"
 ```
 
 ### [getStakedAmountDiff](./api_reference.md#getStakedAmountDiff)
@@ -97,7 +97,7 @@ $ ts-node cli.ts \
     -n rinkeby \
     -e https://api.infura.io/v1/jsonrpc/rinkeby \
     -f getStakedAmountDiff \
-    -p "0xA10ae25583cA45d38b392aDe535a53B73dA142E7,0xDf08F82De32B8d460adbE8D72043E3a7e25A3B39,7475257,7475258"
+    -p "[layer2],[account],[fromBlockNumber],[toBlockNumber]"
 ```
 
 ### [getTotalStakedAmount](./api_reference.md#getTotalStakedAmount)
@@ -106,7 +106,7 @@ $ ts-node cli.ts \
     -n rinkeby \
     -e https://api.infura.io/v1/jsonrpc/rinkeby \
     -f getTotalStakedAmount \
-    -p "0xDf08F82De32B8d460adbE8D72043E3a7e25A3B39,latest"
+    -p "[account],[blockNumber]"
 ```
 
 ### [getTotalStakedAmountDiff](./api_reference.md#getTotalStakedAmountDiff)
@@ -115,14 +115,14 @@ $ ts-node cli.ts \
     -n rinkeby \
     -e https://api.infura.io/v1/jsonrpc/rinkeby \
     -f getTotalStakedAmountDiff \
-    -p "0xDf08F82De32B8d460adbE8D72043E3a7e25A3B39,7475257,7475258"
+    -p "[account],[fromBlockNumber],[toBlockNumber]"
 ```
 
 ### [commitDummy](./api_reference.md#commitDummy)
 ```sh
 $ ts-node cli.ts \
     -n rinkeby  \
-    -e https://rinkeby.infura.io/v3/2d92b8fedd374147b0ec8a9fa04b2839  \
+    -e https://rinkeby.infura.io/v3/[infura_key]  \
     -f commitDummy  \
-    -p "0xA10ae25583cA45d38b392aDe535a53B73dA142E7,[private-key]"
+    -p "[layer2],[privkey]"
 ```

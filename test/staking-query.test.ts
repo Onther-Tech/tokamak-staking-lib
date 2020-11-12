@@ -105,3 +105,11 @@ describe("getTotalStakedAmount functions", () => {
         actual.should.be.bignumber.equal(expected);
     }).timeout(10000);
 });
+
+describe("getTotalSupplyOfWTON function", () => {
+    it("should get total supply of wton", async () => {
+        const expected: BN = new BN(0);
+        const actual: BN = await tokamak.getTotalSupplyOfWTON();
+        actual.should.be.bignumber.gt(expected);
+    });
+});

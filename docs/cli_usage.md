@@ -118,11 +118,19 @@ $ ts-node cli.ts \
     -p "[account],[fromBlockNumber],[toBlockNumber]"
 ```
 
+### [getTotalSupplyOfWTON](./api_reference.md#getTotalSupplyOfWTON)
+```sh
+$ ts-node cli.ts \
+    -n rinkeby \
+    -e https://rinkeby.infura.io/v3/[infura_key] \
+    -f getTotalSupplyOfWTON
+```
+
 ### [commitDummy](./api_reference.md#commitDummy)
 ```sh
 $ ts-node cli.ts \
     -n rinkeby  \
-    -e https://rinkeby.infura.io/v3/[infura_key]  \
+    -e https://rinkeby.infura.io/v3/[infura_key] \
     -f commitDummy  \
     -p "[layer2],[privkey]"
 ```

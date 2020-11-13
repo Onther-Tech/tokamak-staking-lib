@@ -38,11 +38,16 @@ Options:
 ```
 
 ## Examples
+You need to set INFURA_KEY on your terminal before you run the cli.
+```sh
+$ INFURA_KEY=[your infura key]
+```
+
 ### [getNumLayer2](./api_reference.md#getNumLayer2)
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -e https://rinkeby.infura.io/v3/[infura_key] \
+    -e https://rinkeby.infura.io/v3/$INFURA_KEY \
     -f getNumLayer2
 ```
 
@@ -50,7 +55,7 @@ $ ts-node cli.ts \
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -e https://rinkeby.infura.io/v3/[infura_key] \
+    -e https://rinkeby.infura.io/v3/$INFURA_KEY \
     -f getLayer2ByIndex \
     -p [index]
 ```
@@ -59,7 +64,7 @@ $ ts-node cli.ts \
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -e https://rinkeby.infura.io/v3/[infura_key] \
+    -e https://rinkeby.infura.io/v3/$INFURA_KEY \
     -f isLayer2 \
     -p [layer2]
 ```
@@ -68,7 +73,7 @@ $ ts-node cli.ts \
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -e https://rinkeby.infura.io/v3/[infura_key] \
+    -e https://rinkeby.infura.io/v3/$INFURA_KEY \
     -f getOperator \
     -p [layer2]
 ```
@@ -77,7 +82,7 @@ $ ts-node cli.ts \
 ```sh
 $ ts-node cli.ts \
     -n rinkeby \
-    -e https://rinkeby.infura.io/v3/[infura_key] \
+    -e https://rinkeby.infura.io/v3/$INFURA_KEY \
     -f isSubmitter \
     -p "[layer2],[account]"
 ```
@@ -118,11 +123,19 @@ $ ts-node cli.ts \
     -p "[account],[fromBlockNumber],[toBlockNumber]"
 ```
 
+### [getTotalSupplyOfWTON](./api_reference.md#getTotalSupplyOfWTON)
+```sh
+$ ts-node cli.ts \
+    -n rinkeby \
+    -e https://rinkeby.infura.io/v3/$INFURA_KEY \
+    -f getTotalSupplyOfWTON
+```
+
 ### [commitDummy](./api_reference.md#commitDummy)
 ```sh
 $ ts-node cli.ts \
     -n rinkeby  \
-    -e https://rinkeby.infura.io/v3/[infura_key]  \
+    -e https://rinkeby.infura.io/v3/$INFURA_KEY \
     -f commitDummy  \
     -p "[layer2],[privkey]"
 ```

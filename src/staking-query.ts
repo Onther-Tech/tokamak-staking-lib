@@ -4,12 +4,14 @@ import Web3Connector from "./common/web3-connector";
 import Layer2Registry from "./contracts/layer2-registry";
 import SeigManager from "./contracts/seig-manager";
 import Layer2s from "./contracts/layer2s";
+import WTON from "./contracts/wton";
 const PrivatekeyProvider = require("truffle-privatekey-provider");
 
 export const setNetwork = (provider: provider, net: string = "mainnet") => {
     Web3Connector.setNetwork(provider);
     Layer2Registry.setNetwork(net);
     SeigManager.setNetwork(net);
+    WTON.setNetwork(net);
 };
 
 export const getNumLayer2 = (): Promise<number> => {
@@ -64,4 +66,8 @@ export const getTotalStakedAmountDiff = async (account: string, fromBlockNumber:
     }
 
     return total;
+};
+
+export const getTotalSupplyOfWTON = (): Promise<BN> => {
+    return WTON.instance().totalSupply();
 };

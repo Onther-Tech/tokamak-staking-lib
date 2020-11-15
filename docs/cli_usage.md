@@ -123,6 +123,14 @@ $ ts-node cli.ts \
     -p "[account],[fromBlockNumber],[toBlockNumber]"
 ```
 
+### [getTotalSupplyOfTON](./api_reference.md#getTotalSupplyOfTON)
+```sh
+$ ts-node cli.ts \
+    -n rinkeby \
+    -e https://rinkeby.infura.io/v3/$INFURA_KEY \
+    -f getTotalSupplyOfTON
+```
+
 ### [getTotalSupplyOfWTON](./api_reference.md#getTotalSupplyOfWTON)
 ```sh
 $ ts-node cli.ts \

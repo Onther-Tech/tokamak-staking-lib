@@ -18,6 +18,7 @@
   - [getStakedAmountDiff](#getStakedAmountDiff)
   - [getTotalStakedAmount](#getTotalStakedAmount)
   - [getTotalStakedAmountDiff](#getTotalStakedAmountDiff)
+  - [getTotalSupplyOfTON](#getTotalSupplyOfTON)
   - [getTotalSupplyOfWTON](#getTotalSupplyOfWTON)
 - [Layer2 Update](#layer2-update)
   - [commitDummy](#commitDummy)
@@ -403,6 +404,24 @@ console.log(amount1);
 // 2. It gets the total staked amount difference of the specified block period (until the latest block).
 const amount2 = await getTotalStakedAmountDiff(account, fromBlockNumber);
 console.log(amount2);
+```
+
+### getTotalSupplyOfTON
+This function gets the total supply of TON.
+```
+function getTotalSupplyOfTON(): Promise<BN>
+```
+
+#### Parameters
+1. Nothing
+
+#### Returns
+1. `totalSupplyOfTON: Promise<BN>` - the total supply of TON (decimals: 18).
+
+#### Example
+```
+const totalSupply= await getTotalSupplyOfTON();
+console.log(totalSupply);
 ```
 
 ### getTotalSupplyOfWTON

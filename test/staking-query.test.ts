@@ -41,21 +41,21 @@ describe("getStakedAmount functions", () => {
     const layer2: string = "0xA10ae25583cA45d38b392aDe535a53B73dA142E7";
     const account: string = "0xDf08F82De32B8d460adbE8D72043E3a7e25A3B39"; // operator
     it("should get staked amount of latest block", async () => {
-        const expected: BN = new BN(0);
+        const expected: BN = new BN("0");
         const actual: BN = await tokamak.getStakedAmount(layer2, account);
         actual.should.be.bignumber.gt(expected);
     });
 
     it("should get staked amount of specified block", async () => {
-        const blockNumber: BN = new BN(7475257);
-        const expected: BN = new BN(0);
+        const blockNumber: BN = new BN("7475257");
+        const expected: BN = new BN("0");
         const actual: BN = await tokamak.getStakedAmount(layer2, account, blockNumber);
         actual.should.be.bignumber.gt(expected);
     });
 
-    const fromBlockNumber: BN = new BN(7475257);
+    const fromBlockNumber: BN = new BN("7475257");
     it("should get staked amount difference during specified block period 1", async () => {
-        const toBlockNumber: BN = fromBlockNumber.add(new BN(1));
+        const toBlockNumber: BN = fromBlockNumber.add(new BN("1"));
         const fromAmount: BN = await tokamak.getStakedAmount(layer2, account, fromBlockNumber);
         const toAmount: BN = await tokamak.getStakedAmount(layer2, account, toBlockNumber);
         const expected: BN = toAmount.sub(fromAmount);
@@ -75,21 +75,21 @@ describe("getStakedAmount functions", () => {
 describe("getTotalStakedAmount functions", () => {
     const account: string = "0xDf08F82De32B8d460adbE8D72043E3a7e25A3B39"; // operator
     it("should get total staked amount of latest block", async () => {
-        const expected: BN = new BN(0);
+        const expected: BN = new BN("0");
         const actual: BN = await tokamak.getTotalStakedAmount(account);
         actual.should.be.bignumber.gt(expected);
     });
 
     it("should get total staked amount of specified block", async () => {
-        const blockNumber: BN = new BN(7475257);
-        const expected: BN = new BN(0);
+        const blockNumber: BN = new BN("7475257");
+        const expected: BN = new BN("0");
         const actual: BN = await tokamak.getTotalStakedAmount(account, blockNumber);
         actual.should.be.bignumber.gt(expected);
     });
 
-    const fromBlockNumber: BN = new BN(7475257);
+    const fromBlockNumber: BN = new BN("7475257");
     it("should get total staked amount difference during specified block period 1", async () => {
-        const toBlockNumber: BN = fromBlockNumber.add(new BN(1));
+        const toBlockNumber: BN = fromBlockNumber.add(new BN("1"));
         const fromAmount: BN = await tokamak.getTotalStakedAmount(account, fromBlockNumber);
         const toAmount: BN = await tokamak.getTotalStakedAmount(account, toBlockNumber);
         const expected: BN = toAmount.sub(fromAmount);
@@ -116,7 +116,7 @@ describe("getTotalSupplyOfTON function", () => {
 
 describe("getTotalSupplyOfTONWithSeig function", () => {
     it("should get total supply of ton with seig", async () => {
-        const expected: BN = new BN(0);
+        const expected: BN = new BN("0");
         const actual: BN = await tokamak.getTotalSupplyOfTONWithSeig();
         actual.should.be.bignumber.gt(expected);
     });
@@ -124,7 +124,7 @@ describe("getTotalSupplyOfTONWithSeig function", () => {
 
 describe("getTotalSupplyOfWTON function", () => {
     it("should get total supply of wton", async () => {
-        const expected: BN = new BN(0);
+        const expected: BN = new BN("0");
         const actual: BN = await tokamak.getTotalSupplyOfWTON();
         actual.should.be.bignumber.gt(expected);
     });

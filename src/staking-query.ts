@@ -49,7 +49,7 @@ export const getStakedAmountDiff = async (layer2: string, account: string, fromB
 };
 
 export const getTotalStakedAmount = async (account: string, blockNumber?: BN): Promise<BN> => {
-    let total: BN = new BN(0);
+    let total: BN = new BN("0");
     const num: number = await getNumLayer2();
     for (let i: number = 0; i < num; ++i) {
         const layer2: string = await getLayer2ByIndex(i);
@@ -61,7 +61,7 @@ export const getTotalStakedAmount = async (account: string, blockNumber?: BN): P
 };
 
 export const getTotalStakedAmountDiff = async (account: string, fromBlockNumber: BN, toBlockNumber?: BN): Promise<BN> => {
-    let total: BN = new BN(0);
+    let total: BN = new BN("0");
     const num: number = await getNumLayer2();
     for (let i: number = 0; i < num; ++i) {
         const layer2: string = await getLayer2ByIndex(i);

@@ -33,7 +33,15 @@ export default class WTON {
         }
     }
 
+    public static get address(): string {
+        return WTON._address;
+    }
+
     public async totalSupply(): Promise<BN> {
         return toBN(await this._contract.methods.totalSupply().call());
+    }
+
+    public async balanceOf(account: string): Promise<BN> {
+        return toBN(await this._contract.methods.balanceOf(account).call());
     }
 }

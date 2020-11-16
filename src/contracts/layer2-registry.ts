@@ -31,6 +31,10 @@ export default class Layer2Registry {
         }
     }
 
+    public static get address(): string {
+        return Layer2Registry._address;
+    }
+
     public async numLayer2s(): Promise<number> {
         return Number(await this._contract.methods.numLayer2s().call());
     }

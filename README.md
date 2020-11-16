@@ -1,7 +1,7 @@
 # Tokamak Staking Library
 ## Notice
 The current seigniorage per block in SeigManager is 3.92.
-All number units in this library uses RAY (1e27) to prevent number errors.
+All number units in this library uses WAD (1e18) and RAY (1e27) to prevent number errors.
 
 ## Related Contracts
 To get the information about related contracts, refer to [Deployed Contracts on Mainnet].
@@ -10,7 +10,7 @@ To get the information about related contracts, refer to [Deployed Contracts on 
 First, add `tokamak-staking-lib` as a dependency in `package.json` file.
 ```
 "dependencies": {
-  "tokamak-staking-lib": "^0.0.11",
+  "tokamak-staking-lib": "^0.0.12",
 },
 ```
 

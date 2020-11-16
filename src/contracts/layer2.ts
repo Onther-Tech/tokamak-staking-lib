@@ -29,9 +29,9 @@ export default class Layer2 {
         return this._contract.methods.submitNRE(pos1, pos2, dummy, dummy, dummy).send({from: from, value: costNRB});
     }
 
-    private makePos(v1: BN, v2: BN): string {
-        const temp: BN = v1.mul(new BN(2).pow(new BN(128)));
-        return temp.add(v2).toString();
+    private makePos(x: BN, y: BN): string {
+        const temp: BN = x.mul(new BN(2).pow(new BN(128)));
+        return temp.add(y).toString();
     }
 
     public operator(): Promise<string> {

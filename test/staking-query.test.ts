@@ -114,6 +114,14 @@ describe("getTotalSupplyOfTON function", () => {
     });
 });
 
+describe("getTotalSupplyOfTONWithSeig function", () => {
+    it("should get total supply of ton with seig", async () => {
+        const expected: BN = new BN(0);
+        const actual: BN = await tokamak.getTotalSupplyOfTONWithSeig();
+        actual.should.be.bignumber.gt(expected);
+    });
+});
+
 describe("getTotalSupplyOfWTON function", () => {
     it("should get total supply of wton", async () => {
         const expected: BN = new BN(0);

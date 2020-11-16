@@ -1,12 +1,14 @@
 import { provider } from "web3-core";
 import BN from "bn.js";
+const PrivatekeyProvider = require("truffle-privatekey-provider");
 import Web3Connector from "./common/web3-connector";
 import Layer2Registry from "./contracts/layer2-registry";
 import SeigManager from "./contracts/seig-manager";
 import Layer2s from "./contracts/layer2s";
 import TON from "./contracts/ton";
 import WTON from "./contracts/wton";
-const PrivatekeyProvider = require("truffle-privatekey-provider");
+import Tot from "./contracts/tot";
+import { toWAD } from "./common/util";
 
 export const setNetwork = (provider: provider, net: string = "mainnet") => {
     Web3Connector.setNetwork(provider);
@@ -72,6 +74,16 @@ export const getTotalStakedAmountDiff = async (account: string, fromBlockNumber:
 
 export const getTotalSupplyOfTON = (): Promise<BN> => {
     return TON.instance().totalSupply();
+};
+
+export const getTotalSupplyOfTONWithSeig = async (): Promise<BN> => {
+    const ton: TON = TON.instance();
+    const tot: Tot = await Tot.instance();
+
+    const totalTON: BN = await ton.totalSupply();
+    const stakedTONWithSeig: BN = toWAD(await tot.totalSupply());
+    const stakedTON: BN = await ton.balanceOf(WTON.address);
+    return totalTON.add(stakedTONWithSeig).sub(stakedTON);
 };
 
 export const getTotalSupplyOfWTON = (): Promise<BN> => {

@@ -131,6 +131,14 @@ $ ts-node cli.ts \
     -f getTotalSupplyOfTON
 ```
 
+### [getTotalSupplyOfTONWithSeig](./api_reference.md#getTotalSupplyOfTONWithSeig)
+```sh
+$ ts-node cli.ts \
+    -n rinkeby \
+    -e https://rinkeby.infura.io/v3/$INFURA_KEY \
+    -f getTotalSupplyOfTONWithSeig
+```
+
 ### [getTotalSupplyOfWTON](./api_reference.md#getTotalSupplyOfWTON)
 ```sh
 $ ts-node cli.ts \

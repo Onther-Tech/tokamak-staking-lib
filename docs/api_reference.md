@@ -19,6 +19,7 @@
   - [getTotalStakedAmount](#getTotalStakedAmount)
   - [getTotalStakedAmountDiff](#getTotalStakedAmountDiff)
   - [getTotalSupplyOfTON](#getTotalSupplyOfTON)
+  - [getTotalSupplyOfTONWithSeig](#getTotalSupplyOfTONWithSeig)
   - [getTotalSupplyOfWTON](#getTotalSupplyOfWTON)
 - [Layer2 Update](#layer2-update)
   - [commitDummy](#commitDummy)
@@ -416,11 +417,29 @@ function getTotalSupplyOfTON(): Promise<BN>
 1. Nothing
 
 #### Returns
-1. `totalSupplyOfTON: Promise<BN>` - the total supply of TON (decimals: 18).
+1. `totalSupplyOfTON: Promise<BN>` - the total supply of TON (WAD).
 
 #### Example
 ```
-const totalSupply= await getTotalSupplyOfTON();
+const totalSupply = await getTotalSupplyOfTON();
+console.log(totalSupply);
+```
+
+### getTotalSupplyOfTONWithSeig
+This function gets the total supply of TON with seigniorage.
+```
+async function getTotalSupplyOfTONWithSeig(): Promise<BN>
+```
+
+#### Parameters
+1. Nothing
+
+#### Returns
+1. `totalSupplyOfTONWithSeig: Promise<BN>` - the total supply of TON with seigniorage (WAD).
+
+#### Example
+```
+const totalSupply = await getTotalSupplyOfTONWithSeig();
 console.log(totalSupply);
 ```
 
@@ -434,7 +453,7 @@ function getTotalSupplyOfWTON(): Promise<BN>
 1. Nothing
 
 #### Returns
-1. `totalSupplyOfWTON: Promise<BN>` - the total supply of WTON (decimals: 27).
+1. `totalSupplyOfWTON: Promise<BN>` - the total supply of WTON (RAY).
 
 #### Example
 ```

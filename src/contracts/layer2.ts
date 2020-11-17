@@ -18,9 +18,9 @@ export default class Layer2 {
         const currentForkNumber: string = await this._contract.methods.currentFork().call();
 
         const fork: any = await this._contract.methods.forks(currentForkNumber).call();
-        const epochNumber: BN = toBN(fork.lastEpoch).add(new BN(1));
-        const startBlockNumber: BN = toBN(fork.lastBlock).add(new BN(1));
-        const endBlockNumber: BN = startBlockNumber.add(toBN(NRELength)).sub(new BN(1));
+        const epochNumber: BN = toBN(fork.lastEpoch).add(new BN("1"));
+        const startBlockNumber: BN = toBN(fork.lastBlock).add(new BN("1"));
+        const endBlockNumber: BN = startBlockNumber.add(toBN(NRELength)).sub(new BN("1"));
 
         const pos1: string = this.makePos(toBN(currentForkNumber), epochNumber);
         const pos2: string = this.makePos(startBlockNumber, endBlockNumber);
@@ -29,9 +29,9 @@ export default class Layer2 {
         return this._contract.methods.submitNRE(pos1, pos2, dummy, dummy, dummy).send({from: from, value: costNRB});
     }
 
-    private makePos(v1: BN, v2: BN): string {
-        const temp: BN = v1.mul(new BN(2).pow(new BN(128)));
-        return temp.add(v2).toString();
+    private makePos(x: BN, y: BN): string {
+        const temp: BN = x.mul(new BN("2").pow(new BN("128")));
+        return temp.add(y).toString();
     }
 
     public operator(): Promise<string> {

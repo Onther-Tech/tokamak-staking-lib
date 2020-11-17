@@ -8,6 +8,7 @@ export default class SeigManager {
     private static _instance: SeigManager;
     private static _address: string = "0x710936500aC59e8551331871Cbad3D33d5e0D909"; // default: mainnet
     private _contract: Contract;
+    private _totAddress: string;
 
     private constructor() {
         const web3 = Web3Connector.instance().web3;
@@ -33,7 +34,18 @@ export default class SeigManager {
         }
     }
 
+    public static get address(): string {
+        return SeigManager._address;
+    }
+
     public async stakeOf(layer2: string, account: string, blockNumber?: BN): Promise<BN> {
         return toBN(await this._contract.methods.stakeOf(layer2, account).call(null, blockNumber == null ? "latest" : blockNumber));
+    }
+
+    public async totAddress(): Promise<string> {
+        if (!this._totAddress) {
+            this._totAddress = await this._contract.methods.tot().call();
+        }
+        return this._totAddress;
     }
 }

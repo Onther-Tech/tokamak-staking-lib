@@ -79,7 +79,7 @@ function calculateExpectedSeig(
 6. `pseigRate: BN` - The pseig rate in RAY. The current value is 0.4. You can get this using seigManager.relativeSeigRate().
 
 #### Returns
-1. `expectedSeig: BN` - The expected seigniorage.
+1. `expectedSeig: BN` - The expected seigniorage (decimals: 27).
 
 #### Example
 ```
@@ -136,7 +136,7 @@ function calculateExpectedSeigWithCommission(
 11. `isOperator: boolean` - Whether the user you want to calculate seigniorate for is operator.
 
 #### Returns
-1. `expectedSeigWithCommission: BN` - The expected seigniorage with commission.
+1. `expectedSeigWithCommission: BN` - The expected seigniorage with commission (decimals: 27).
 
 #### Example
 ```
@@ -303,7 +303,7 @@ async function getStakedAmount(layer2: string, account: string, blockNumber?: BN
 3. `blockNumber: BN (optional)` - The block number. If you don't specify `blockNumber`, it will be `latest` by default.
 
 #### Returns
-1. `stakedAmount: Promise<BN>` - The staked amount of the specified block.
+1. `stakedAmount: Promise<BN>` - The staked amount of the specified block (decimals: 27).
 
 #### Example
 ```
@@ -333,7 +333,7 @@ async function getStakedAmountDiff(layer2: string, account: string, fromBlockNum
 4. `toBlockNumber: BN (optional)` - The ending block number of the block period. If you don't specify `toBlockNumber`, it will be `latest` by default.
 
 #### Returns
-1. `stakedAmountDiff: Promise<BN>` - The staked amount difference of the specified block period.
+1. `stakedAmountDiff: Promise<BN>` - The staked amount difference of the specified block period (decimals: 27).
 
 #### Example
 ```
@@ -362,7 +362,7 @@ async function getTotalStakedAmount(account: string, blockNumber?: BN): Promise<
 2. `blockNumber: BN (optional)` - The block number. If you don't specify `blockNumber`, it will be `latest` by default.
 
 #### Returns
-1. `totalStakedAmount: Promise<BN>` - The total staked amount of the specified block.
+1. `totalStakedAmount: Promise<BN>` - The total staked amount of the specified block (decimals: 27).
 
 #### Example
 ```
@@ -390,7 +390,7 @@ async function getTotalStakedAmountDiff(account: string, fromBlockNumber: BN, to
 3. `toBlockNumber: BN (optional)` - The ending block number of the block period. If you don't specify `toBlockNumber`, it will be `latest` by default.
 
 #### Returns
-1. `totalStakedAmountDiff: Promise<BN>` - The total staked amount difference of the specified block period.
+1. `totalStakedAmountDiff: Promise<BN>` - The total staked amount difference of the specified block period (decimals: 27).
 
 #### Example
 ```
@@ -417,7 +417,7 @@ function getTotalSupplyOfTON(): Promise<BN>
 1. Nothing
 
 #### Returns
-1. `totalSupplyOfTON: Promise<BN>` - the total supply of TON (WAD).
+1. `totalSupplyOfTON: Promise<BN>` - the total supply of TON (decimals: 18).
 
 #### Example
 ```
@@ -435,7 +435,7 @@ async function getTotalSupplyOfTONWithSeig(): Promise<BN>
 1. Nothing
 
 #### Returns
-1. `totalSupplyOfTONWithSeig: Promise<BN>` - the total supply of TON with seigniorage (WAD).
+1. `totalSupplyOfTONWithSeig: Promise<BN>` - the total supply of TON with seigniorage (decimals: 18).
 
 #### Example
 ```
@@ -453,7 +453,7 @@ function getTotalSupplyOfWTON(): Promise<BN>
 1. Nothing
 
 #### Returns
-1. `totalSupplyOfWTON: Promise<BN>` - the total supply of WTON (RAY).
+1. `totalSupplyOfWTON: Promise<BN>` - the total supply of WTON (decimals: 27).
 
 #### Example
 ```
